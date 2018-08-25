@@ -1,0 +1,9 @@
+FROM centos:7
+ENV container docker
+
+COPY cloudera-kudu.repo /etc/yum.repos.d/cloudera-kudu.repo
+COPY command.sh /command.sh
+
+RUN yum install -y initscripts kudu kudu-master kudu-tserver kudu-client0 kudu-client-devel
+
+CMD ["/command.sh"]
