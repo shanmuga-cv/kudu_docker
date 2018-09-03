@@ -5,5 +5,6 @@ COPY cloudera-kudu.repo /etc/yum.repos.d/cloudera-kudu.repo
 COPY command.sh /command.sh
 
 RUN yum install -y initscripts kudu kudu-master kudu-tserver kudu-client0 kudu-client-devel
+RUN echo "--use-hybrid-clock=false" >> /etc/kudu/conf/master.gflagfile && echo "--use-hybrid-clock=false" 
 
 CMD ["/command.sh"]
