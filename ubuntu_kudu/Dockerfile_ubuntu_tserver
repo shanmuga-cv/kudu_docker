@@ -1,0 +1,10 @@
+FROM ubuntu:xenial
+
+COPY cloudera.list /etc/apt/sources.list.d/cloudera.list
+COPY kudu_tserver_command.sh /kudu_tserver_command.sh
+COPY archive.key /root/archive.key
+
+RUN apt-key add /root/archive.key && apt-get update && apt-get install -y kudu kudu-tserver
+RUN echo "--use-hybrid-clock=false" >> /etc/kudu/conf/master.gflagfile && echo "--use-hybrid-clock=false" >> /etc/kudu/conf/tserver.gflagfile && echo "--tserver_master_addrs=master:7051" >> /etc/kudu/conf/tserver.gflagfile
+
+CMD ["/kudu_tserver_command.sh"]

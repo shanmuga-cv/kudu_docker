@@ -1,0 +1,25 @@
+version: '3'
+
+services:
+  master:
+    build:
+      dockerfile: Dockerfile_ubuntu_master
+      context: .
+    image: kudu_master_ubuntu
+    stdin_open: true
+    tty: true
+    ports:
+      - "18051:8051"
+
+  tserver:
+    build:
+      dockerfile: Dockerfile_ubuntu_tserver
+      context: .
+    image: kudu_tserver_ubuntu
+    stdin_open: true
+    tty: true
+
+networks:
+  dev_network:
+    external: true
+
