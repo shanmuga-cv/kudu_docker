@@ -1,0 +1,31 @@
+version: '3'
+
+services:
+  master:
+    build:
+      dockerfile: Dockerfile_centos_master
+      context: .
+    image: kudu_master_centos
+    stdin_open: true
+    tty: true
+    networks:
+      - dev_network
+    ports:
+      - "18051-18053:8051"
+
+  tserver:
+    build:
+      dockerfile: Dockerfile_centos_tserver
+      context: .
+    image: kudu_tserver_centos
+    stdin_open: true
+    tty: true
+    networks:
+      - dev_network
+    ports:
+      - "17050-17052:8050"
+
+networks:
+  dev_network:
+    external: true
+
