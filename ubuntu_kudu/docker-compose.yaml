@@ -9,7 +9,7 @@ services:
     stdin_open: true
     tty: true
     networks:
-      - hf_dev_network
+      - dev_network
     ports:
       - "18051-18053:8051"
 
@@ -21,7 +21,7 @@ services:
     stdin_open: true
     tty: true
     networks:
-      - hf_dev_network
+      - dev_network
     ports:
       - "17050-17052:8050"
 
